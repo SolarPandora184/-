@@ -119,6 +119,9 @@
       border-radius: 12px;
       width: 90%;
       max-width: 500px;
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .form-container h2 {
@@ -180,36 +183,52 @@
       z-index: 9999;
     }
 
-    /* Cookie consent styles */
-    #cookieConsent {
+    /* Cookie popup styling */
+    .cookies-popup {
       display: none;
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
       background: rgba(0,0,0,0.85);
       color: white;
-      padding: 15px 25px;
+      padding: 1rem 1.5rem;
       border-radius: 8px;
-      font-size: 0.9em;
-      z-index: 10000;
-      max-width: 450px;
-      margin: auto;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+      z-index: 9999;
+      max-width: 400px;
+      font-size: 0.95em;
+      box-shadow: 0 0 15px rgba(0,200,150,0.6);
     }
-    #cookieConsent a {
+
+    .cookies-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .cookie-btn {
+      background-color: #00c896;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .cookie-btn:hover {
+      background-color: #00a47b;
+    }
+
+    .privacy-link {
       color: #00c896;
+      cursor: pointer;
       text-decoration: underline;
     }
-    #acceptCookies {
-      background: #00c896;
-      border: none;
-      padding: 8px 15px;
-      color: white;
-      margin-left: 15px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+
   </style>
 </head>
 <body>
@@ -260,66 +279,125 @@
   <div class="form-popup" id="reviewPopup">
     <form class="form-container" action="https://formsubmit.co/Trevorcaezza@icloud.com" method="POST">
       <input type="hidden" name="_subject" value="New Review from Website">
-      <input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?review=1">
+      <input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?success=2">
       <h2>Leave a Review</h2>
       <input type="text" name="name" placeholder="Your Name" required />
-      <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
-      <button type="submit">Submit</button>
+      <textarea name="review" rows="5" placeholder="Your Review" required></textarea>
+      <button type="submit">Send</button>
       <button type="button" class="close-btn" onclick="document.getElementById('reviewPopup').style.display='none'">Cancel</button>
     </form>
   </div>
 
   <!-- Success Messages -->
-  <div id="successMessage">
-    ✅ Thanks! We'll reach out with your quote as soon as possible.
-  </div>
-  <div id="reviewSuccessMessage">
-    ✅ Thanks for your review! We appreciate your feedback.
+  <div id="successMessage">Thank you for contacting us!</div>
+  <div id="reviewSuccessMessage">Thank you for your review!</div>
+
+  <!-- Cookies Popup -->
+  <div class="cookies-popup" id="cookiesPopup">
+    <div class="cookies-content">
+      <p>
+        This site uses cookies to improve your experience. By continuing to browse, you agree to our
+        <span class="privacy-link" onclick="openPrivacyPolicy()">Privacy Policy</span>.
+      </p>
+      <button id="acceptCookies" class="cookie-btn">Accept</button>
+    </div>
   </div>
 
-  <!-- Cookie Consent Popup -->
-  <div id="cookieConsent">
-    We use cookies to improve your experience on our site. By using our site, you agree to our <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
-    <button id="acceptCookies">Accept</button>
+  <!-- Privacy Policy Modal -->
+  <div class="form-popup" id="privacyPolicyPopup" style="display:none; justify-content:center; align-items:center; z-index:10000;">
+    <div class="form-container">
+      <h2>Privacy Policy for TC Weed Abatement</h2>
+      <p><em>Last updated: May 28, 2025</em></p>
+      <p>At TC Weed Abatement, your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website.</p>
+
+      <h3>1. Information We Collect</h3>
+      <ul>
+        <li><strong>Personal Information:</strong> When you fill out our contact or review forms, we collect your name, email address, and any message or review you provide.</li>
+        <li><strong>Cookies:</strong> We use cookies to improve your experience on our website, such as remembering your consent preferences.</li>
+        <li><strong>Log Data:</strong> Our server may automatically collect information such as your IP address, browser type, and visit times for security and analytics purposes.</li>
+      </ul>
+
+      <h3>2. How We Use Your Information</h3>
+      <ul>
+        <li>To respond to your inquiries and provide the services you request.</li>
+        <li>To send you updates or information if you opt in.</li>
+        <li>To improve our website and services.</li>
+        <li>To comply with legal obligations.</li>
+      </ul>
+
+      <h3>3. Sharing Your Information</h3>
+      <p>We do <strong>not</strong> sell, trade, or rent your personal information to others. Your information may be shared with trusted third parties who assist us in operating our website or providing services, under confidentiality agreements.</p>
+
+      <h3>4. Cookies and Tracking Technologies</h3>
+      <p>Our website uses cookies to:</p>
+      <ul>
+        <li>Remember your cookie consent preferences.</li>
+        <li>Enhance website functionality and user experience.</li>
+      </ul>
+      <p>You can disable cookies through your browser settings; however, some parts of the website may not function properly without them.</p>
+
+      <h3>5. Data Security</h3>
+      <p>We take reasonable measures to protect your personal information from unauthorized access, disclosure, or alteration.</p>
+
+      <h3>6. Your Rights</h3>
+      <p>Depending on your location, you may have rights regarding your personal data, including access, correction, or deletion. Please contact us if you wish to exercise these rights.</p>
+
+      <h3>7. Links to Other Sites</h3>
+      <p>Our website may contain links to third-party websites. We are not responsible for the privacy practices of those sites.</p>
+
+      <h3>8. Children’s Privacy</h3>
+      <p>Our website is not intended for children under 13. We do not knowingly collect personal information from children.</p>
+
+      <h3>9. Changes to This Privacy Policy</h3>
+      <p>We may update this policy from time to time. We encourage you to review this page periodically for any changes.</p>
+
+      <h3>10. Contact Us</h3>
+      <p>If you have any questions about this Privacy Policy, please contact us at:<br/>
+      <strong>Email:</strong> Trevorcaezza@icloud.com</p>
+
+      <button onclick="closePrivacyPolicy()" style="position:absolute; top:1rem; right:1rem; background:#ccc; border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer;">Close</button>
+    </div>
   </div>
 
-  <script>
-    if (window.location.search.includes('success=1')) {
-      const msg = document.getElementById('successMessage');
-      msg.style.display = 'block';
-      setTimeout(() => {
-        msg.style.display = 'none';
-        const url = new URL(window.location);
-        url.search = '';
-        window.history.replaceState({}, document.title, url);
-      }, 6000);
+<script>
+  // Show the privacy policy modal
+  function openPrivacyPolicy() {
+    document.getElementById('privacyPolicyPopup').style.display = 'flex';
+  }
+
+  // Close the privacy policy modal
+  function closePrivacyPolicy() {
+    document.getElementById('privacyPolicyPopup').style.display = 'none';
+  }
+
+  // Cookies popup logic
+  window.onload = function() {
+    // Show success messages based on query params (optional)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === '1') {
+      showSuccessMessage('successMessage');
+    } else if (urlParams.get('success') === '2') {
+      showSuccessMessage('reviewSuccessMessage');
     }
 
-    if (window.location.search.includes('review=1')) {
-      const msg = document.getElementById('reviewSuccessMessage');
-      msg.style.display = 'block';
-      setTimeout(() => {
-        msg.style.display = 'none';
-        const url = new URL(window.location);
-        url.search = '';
-        window.history.replaceState({}, document.title, url);
-      }, 6000);
+    // Show cookies popup if not accepted
+    if (!localStorage.getItem('cookiesAccepted')) {
+      document.getElementById('cookiesPopup').style.display = 'flex';
     }
+  };
 
-    // Cookie consent script
-    document.addEventListener("DOMContentLoaded", function() {
-      const cookieConsent = document.getElementById('cookieConsent');
-      const acceptBtn = document.getElementById('acceptCookies');
+  function showSuccessMessage(id) {
+    const msg = document.getElementById(id);
+    if (msg) {
+      msg.style.display = 'block';
+      setTimeout(() => { msg.style.display = 'none'; }, 4000);
+    }
+  }
 
-      if (!localStorage.getItem('cookiesAccepted')) {
-        cookieConsent.style.display = 'block';
-      }
-
-      acceptBtn.addEventListener('click', () => {
-        localStorage.setItem('cookiesAccepted', 'true');
-        cookieConsent.style.display = 'none';
-      });
-    });
-  </script>
+  document.getElementById('acceptCookies').addEventListener('click', function() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookiesPopup').style.display = 'none';
+  });
+</script>
 </body>
 </html>
