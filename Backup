@@ -20,6 +20,21 @@
       width: 100%;
       min-height: 100vh;
       padding: 2rem;
+      position: relative;
+    }
+
+    /* Logo top-left */
+    .logo-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .logo-container img {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
 
     header {
@@ -163,6 +178,9 @@
         right: 1rem;
         top: 1rem;
       }
+      .logo-container img {
+        height: 45px;
+      }
     }
 
     #successMessage,
@@ -183,6 +201,11 @@
 </head>
 <body>
   <div class="overlay">
+    <!-- Logo Top-Left -->
+    <div class="logo-container">
+      <img src="ChatGPT Image May 28, 2025, 02_04_14 PM.png" alt="TC Weed Abatement Logo" />
+    </div>
+
     <header>
       <div class="top-right">
         <button class="quote-btn" onclick="document.getElementById('formPopup').style.display='flex'">Get a Quote</button>
@@ -199,7 +222,7 @@
 
     <section>
       <h2>Our Services</h2>
-      <p>We offer a range of services including Trash cleanup, Weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
+      <p>We offer a range of services including Trash cleanup, Weed removal and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
     </section>
 
     <section>
