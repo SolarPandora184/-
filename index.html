@@ -20,21 +20,6 @@
       width: 100%;
       min-height: 100vh;
       padding: 2rem;
-      position: relative;
-    }
-
-    /* Logo top-left */
-    .logo-container {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 1000;
-    }
-    .logo-container img {
-      height: 60px;
-      width: auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
 
     header {
@@ -178,9 +163,6 @@
         right: 1rem;
         top: 1rem;
       }
-      .logo-container img {
-        height: 45px;
-      }
     }
 
     #successMessage,
@@ -197,15 +179,41 @@
       font-size: 1.1em;
       z-index: 9999;
     }
+
+    /* Cookie consent styles */
+    #cookieConsent {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.85);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      z-index: 10000;
+      max-width: 450px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+    #cookieConsent a {
+      color: #00c896;
+      text-decoration: underline;
+    }
+    #acceptCookies {
+      background: #00c896;
+      border: none;
+      padding: 8px 15px;
+      color: white;
+      margin-left: 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div class="overlay">
-    <!-- Logo Top-Left -->
-    <div class="logo-container">
-      <img src="ChatGPT Image May 28, 2025, 02_04_14 PM.png" alt="TC Weed Abatement Logo" />
-    </div>
-
     <header>
       <div class="top-right">
         <button class="quote-btn" onclick="document.getElementById('formPopup').style.display='flex'">Get a Quote</button>
@@ -222,7 +230,7 @@
 
     <section>
       <h2>Our Services</h2>
-      <p>We offer a range of services including Trash cleanup, Weed removal and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
+      <p>We offer a range of services including Trash cleanup, Weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
     </section>
 
     <section>
@@ -269,6 +277,12 @@
     ✅ Thanks for your review! We appreciate your feedback.
   </div>
 
+  <!-- Cookie Consent Popup -->
+  <div id="cookieConsent">
+    We use cookies to improve your experience on our site. By using our site, you agree to our <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+    <button id="acceptCookies">Accept</button>
+  </div>
+
   <script>
     if (window.location.search.includes('success=1')) {
       const msg = document.getElementById('successMessage');
@@ -291,6 +305,21 @@
         window.history.replaceState({}, document.title, url);
       }, 6000);
     }
+
+    // Cookie consent script
+    document.addEventListener("DOMContentLoaded", function() {
+      const cookieConsent = document.getElementById('cookieConsent');
+      const acceptBtn = document.getElementById('acceptCookies');
+
+      if (!localStorage.getItem('cookiesAccepted')) {
+        cookieConsent.style.display = 'block';
+      }
+
+      acceptBtn.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieConsent.style.display = 'none';
+      });
+    });
   </script>
 </body>
 </html>
