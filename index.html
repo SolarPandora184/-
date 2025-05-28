@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Company Landing Page</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      background: url('vecteezy_vector-mountains-forest-background-texture-silhouette-of_7162599.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      padding-top: 10vh;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    header p {
+      font-size: 1.3em;
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.5;
+    }
+
+    .quote-btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 1.5rem;
+      font-size: 1.1em;
+      background-color: #00c896;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .quote-btn:hover {
+      background-color: #00a47b;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+    }
+
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid white;
+      padding-bottom: 0.5rem;
+    }
+
+    section p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9em;
+      background-color: rgba(0, 0, 0, 0.4);
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .form-container {
+      background-color: white;
+      color: black;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .form-container h2 {
+      margin-bottom: 1rem;
+    }
+
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 0.7rem;
+      margin: 0.5rem 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .form-container button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background-color: #00c896;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .form-container .close-btn {
+      background-color: #ccc;
+      margin-left: 1rem;
+      color: black;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2em;
+      }
+      section {
+        margin: 2rem 1rem;
+      }
+    }
+
+    #successMessage {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00c896;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1.1em;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <header>
+      <h1>TC Weed Abatement</h1>
+      <p>Revitalizing Lawns One Day at a Time</p>
+      <button class="quote-btn" onclick="document.getElementById('formPopup').style.display='flex'">Get a Quote Today</button>
+    </header>
+
+    <section>
+      <h2>About Us</h2>
+      <p>We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's Weeds, trash, or leaf removal, we deliver with precision and passion.</p>
+    </section>
+
+    <section>
+      <h2>Our Services</h2>
+      <p>We offer a range of services including Trash cleanup, Weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+       <p>Email: Trevorcaezza@icloud.com<br/>Phone: (661) 289-6054</p>
+    </section>
+
+    <footer>
+      TM; 2025 TC Weed Abatement. Not all rights reserved.
+    </footer> <!-- NOTE: TM means Totaly Magic -->
+  </div>
+
+  <!-- Quote Form Popup -->
+  <div class="form-popup" id="formPopup">
+    <form class="form-container" action="https://formsubmit.co/Trevorcaezza@icloud.com" method="POST">
+      <!-- Replace this URL with your actual GitHub Pages URL -->
+<input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?success=1">
+      <h2>Get a Quote</h2>
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="5" placeholder="Tell us what you need..." required></textarea>
+      <button type="submit">Send</button>
+      <button type="button" class="close-btn" onclick="document.getElementById('formPopup').style.display='none'">Cancel</button>
+    </form>
+  </div>
+
+  <!-- Success Message -->
+  <div id="successMessage">
+    ✅ Thanks! We'll reach out with your quote as soon as possible.
+  </div>
+
+  <script>
+    if (window.location.search.includes('success=1')) {
+      document.getElementById('successMessage').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+        const url = new URL(window.location);
+        url.search = '';
+        window.history.replaceState({}, document.title, url);
+      }, 6000);
+    }
+  </script>
+</body>
+</html>
