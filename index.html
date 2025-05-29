@@ -3,65 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TC Weed Abatement</title>
+  <title>TC Weed</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: black;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      background: url('vecteezy_vector-mountains-forest-background-texture-silhouette-of_7162599.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-      text-align: center;
     }
-    header {
-      background: green;
-      padding: 1rem;
-    }
-    main {
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      min-height: 100vh;
       padding: 2rem;
     }
-    footer {
-      background: #222;
-      padding: 1rem;
+
+    header {
+      text-align: center;
+      padding-top: 10vh;
+      position: relative;
     }
-    .admin-btn {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: white;
-      color: black;
+
+    .top-right {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .quote-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95em;
+      background-color: #00c896;
+      color: white;
       border: none;
-      padding: 8px 12px;
+      border-radius: 8px;
       cursor: pointer;
-      font-weight: bold;
+      transition: background 0.3s;
     }
-    .editable {
-      border: 1px dashed white;
+
+    .quote-btn:hover {
+      background-color: #00a47b;
+    }
+
+    .review-link {
+      color: #00c896;
+      cursor: pointer;
+      text-decoration: underline;
+      font-size: 0.95em;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin-bottom: 0.5em;
+    }
+
+    header p {
+      font-size: 1.3em;
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.5;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+    }
+
+    section h2 {
+      font-size: 2em;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid white;
+      padding-bottom: 0.5rem;
+    }
+
+    section p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9em;
+      background-color: rgba(0, 0, 0, 0.4);
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .edit-btn {
+      background-color: #00c896;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.3rem 0.7rem;
+      margin-left: 1rem;
+      cursor: pointer;
+      font-size: 0.8em;
     }
   </style>
 </head>
 <body>
+  <!-- Admin content will be injected here -->
+  <div id="adminContent" class="overlay">
+    <header>
+      <div class="top-right">
+        <button class="quote-btn" onclick="document.getElementById('formPopup').style.display='flex'">Get a Quote</button>
+        <span class="review-link" onclick="document.getElementById('reviewPopup').style.display='flex'">Leave a Review</span>
+        <button id="adminButton" class="quote-btn" onclick="handleAdminClick()">Admin Login</button>
+      </div>
+      <h1 contenteditable="false" id="editable-title">TC Weed Abatement</h1>
+      <p contenteditable="false" id="editable-tagline">Revitalizing Lawns One Day at a Time</p>
+    </header>
 
-  <header>
-    <h1>TC Weed Abatement</h1>
-  </header>
+    <section>
+      <h2>About Us</h2>
+      <p contenteditable="false" id="editable-about">We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's weeds, trash, or leaf removal, we deliver with precision and passion.</p>
+    </section>
 
-  <main>
-    <p id="aboutText">We are a professional weed abatement company serving the greater Los Angeles area with top-quality service and fast turnaround times.</p>
-    <p id="servicesText">Our services include lot clearing, fire prevention, brush removal, and general landscaping maintenance to help keep your property safe and clean.</p>
-    <p id="contactText">Email: Trevorcaezza@icloud.com<br>Phone: (661) 289-6054</p>
-  </main>
+    <section>
+      <h2>Our Services</h2>
+      <p contenteditable="false" id="editable-services">We offer a range of services including trash cleanup, weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 TC Weed Abatement. All rights reserved.</p>
-  </footer>
+    <section>
+      <h2>Contact</h2>
+      <p contenteditable="false" id="editable-contact">Email: Trevorcaezza@icloud.com<br/>Phone: (661) 289-6054</p>
+    </section>
 
-  <!-- Admin Panel Button -->
-  <button id="adminPanel" class="admin-btn" onclick="logoutAdmin()" style="display: none;">Logout</button>
-  <button id="adminLoginBtn" class="admin-btn" onclick="showAdminLogin()">Admin</button>
+    <footer>
+      TM; 2025 TC Weed Abatement. Not all rights reserved.
+    </footer>
+  </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+    import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAk57NSoZNbGV7h5Br1-F97VU2qdCwSVb8",
@@ -69,60 +157,69 @@
       projectId: "tc-weed-abatement",
       storageBucket: "tc-weed-abatement.appspot.com",
       messagingSenderId: "740378265768",
-      appId: "1:740378265768:web:97ddf3a159e1268bf71a9d"
+      appId: "1:740378265768:web:97ddf3a159e1268bf71a9d",
+      databaseURL: "https://tc-weed-abatement-default-rtdb.firebaseio.com"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Load saved content on page load
-    document.querySelectorAll("p[id]").forEach(p => {
-      const contentRef = ref(db, 'content/' + p.id);
-      onValue(contentRef, snapshot => {
-        if (snapshot.exists()) {
-          p.innerHTML = snapshot.val();
+    let isAdmin = false;
+
+    async function handleAdminClick() {
+      if (!isAdmin) {
+        const pw = prompt("Enter admin password:");
+        if (pw && pw.toLowerCase() === "caprocz") {
+          isAdmin = true;
+          document.getElementById("adminButton").innerText = "Logout";
+          enableEditing();
+        } else {
+          alert("Incorrect password.");
         }
-      });
-    });
-
-    // Admin Login
-    window.showAdminLogin = function () {
-      const password = prompt("Enter admin password:");
-      if (password && password.toLowerCase() === "caprocz") {
-        document.getElementById("adminPanel").style.display = "block";
-        document.getElementById("adminLoginBtn").style.display = "none";
-        enableEditing();
       } else {
-        alert("Incorrect password.");
+        isAdmin = false;
+        document.getElementById("adminButton").innerText = "Admin Login";
+        disableEditing();
       }
-    };
+    }
 
-    // Admin Logout
-    window.logoutAdmin = function () {
-      document.getElementById("adminPanel").style.display = "none";
-      document.getElementById("adminLoginBtn").style.display = "block";
-      disableEditing();
-    };
+    window.handleAdminClick = handleAdminClick;
 
-    // Enable editable paragraphs
     function enableEditing() {
-      document.querySelectorAll("p[id]").forEach(p => {
-        p.contentEditable = true;
-        p.classList.add("editable");
-        p.addEventListener("blur", () => {
-          const contentRef = ref(db, 'content/' + p.id);
-          set(contentRef, p.innerHTML.trim());
+      const ids = ["editable-title", "editable-tagline", "editable-about", "editable-services", "editable-contact"];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        el.contentEditable = true;
+        el.style.borderBottom = "1px dashed #00c896";
+        el.addEventListener("blur", () => saveContent(id, el.innerHTML));
+      });
+    }
+
+    function disableEditing() {
+      const ids = ["editable-title", "editable-tagline", "editable-about", "editable-services", "editable-contact"];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        el.contentEditable = false;
+        el.style.borderBottom = "none";
+      });
+    }
+
+    function saveContent(id, value) {
+      set(ref(db, "content/" + id), value);
+    }
+
+    function loadContent() {
+      const ids = ["editable-title", "editable-tagline", "editable-about", "editable-services", "editable-contact"];
+      ids.forEach(id => {
+        get(ref(db, "content/" + id)).then(snapshot => {
+          if (snapshot.exists()) {
+            document.getElementById(id).innerHTML = snapshot.val();
+          }
         });
       });
     }
 
-    // Disable editable paragraphs
-    function disableEditing() {
-      document.querySelectorAll("p[id]").forEach(p => {
-        p.contentEditable = false;
-        p.classList.remove("editable");
-      });
-    }
+    loadContent();
   </script>
 </body>
 </html>
