@@ -24,28 +24,18 @@
 
     header {
       text-align: center;
-      padding-top: 13vh;
+      padding-top: 10vh;
       position: relative;
     }
 
     .top-right {
       position: absolute;
       top: 1rem;
-      right: 2rem;
+      right: 1rem;
       display: flex;
       gap: 1rem;
       align-items: center;
-    }
-
-    .top-left {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-    }
-
-    .top-left img {
-      height: 50px;
-      width: auto;
+      z-index: 1;
     }
 
     .quote-btn {
@@ -107,6 +97,9 @@
       padding: 2rem;
       font-size: 0.9em;
       background-color: rgba(0, 0, 0, 0.4);
+      position: relative;
+      bottom: 0;
+      width: 100%;
     }
 
     .form-popup {
@@ -160,13 +153,16 @@
     }
 
     @media (max-width: 600px) {
-      header {
-        padding-top: 13vh;
+      header h1 {
+        font-size: 2.2em;
+      }
+      section {
+        margin: 2rem 1rem;
       }
       .top-right {
         flex-direction: column;
         right: 1rem;
-        top: 1rem;
+        top: 0.5rem;
       }
     }
 
@@ -185,30 +181,27 @@
       z-index: 9999;
     }
 
-    /* Cookie banner */
     .cookie-banner {
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
       color: white;
       padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 9999;
-      flex-wrap: wrap;
+      z-index: 10000;
     }
 
     .cookie-banner button {
       background-color: #00c896;
-      color: white;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1rem;
+      color: white;
       border-radius: 6px;
       cursor: pointer;
-      margin-top: 0.5rem;
     }
 
     .cookie-banner a {
@@ -220,8 +213,6 @@
 <body>
   <div class="overlay">
     <header>
-      <div class="top-left">
-      </div>
       <div class="top-right">
         <button class="quote-btn" onclick="document.getElementById('formPopup').style.display='flex'">Get a Quote</button>
         <span class="review-link" onclick="document.getElementById('reviewPopup').style.display='flex'">Leave a Review</span>
@@ -232,12 +223,12 @@
 
     <section>
       <h2>About Us</h2>
-      <p>We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's Weeds, trash, or leaf removal, we deliver with precision and passion.</p>
+      <p>We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's weeds, trash, or leaf removal, we deliver with precision and passion.</p>
     </section>
 
     <section>
       <h2>Our Services</h2>
-      <p>We offer a range of services including Trash cleanup, Weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
+      <p>We offer a range of services including trash cleanup, weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
     </section>
 
     <section>
@@ -252,8 +243,9 @@
 
   <!-- Quote Form -->
   <div class="form-popup" id="formPopup">
-    <form class="form-container" action="https://formsubmit.co/Trevorcaezza@icloud.com" method="POST">
+    <form class="form-container" action="https://formsubmit.co/youremail@example.com" method="POST">
       <input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?success=1">
+      <input type="hidden" name="_cc" value="friend@example.com">
       <h2>Get a Quote</h2>
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="email" placeholder="Your Email" required />
@@ -265,9 +257,10 @@
 
   <!-- Review Form -->
   <div class="form-popup" id="reviewPopup">
-    <form class="form-container" action="https://formsubmit.co/Trevorcaezza@icloud.com" method="POST">
+    <form class="form-container" action="https://formsubmit.co/Kendrick.uhles@cawgcap.org" method="POST">
       <input type="hidden" name="_subject" value="New Review from Website">
       <input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?review=1">
+      <input type="hidden" name="_cc" value="trevorcaezza@icloud.com">
       <h2>Leave a Review</h2>
       <input type="text" name="name" placeholder="Your Name" required />
       <textarea name="review" rows="5" placeholder="Write your review here..." required></textarea>
@@ -276,18 +269,18 @@
     </form>
   </div>
 
-  <!-- Cookie Banner -->
-  <div class="cookie-banner" id="cookieBanner">
-    <span>We use cookies to ensure the best experience. Read our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.</span>
-    <button onclick="acceptCookies()">Accept</button>
-  </div>
-
   <!-- Success Messages -->
   <div id="successMessage">
     ✅ Thanks! We'll reach out with your quote as soon as possible.
   </div>
   <div id="reviewSuccessMessage">
     ✅ Thanks for your review! We appreciate your feedback.
+  </div>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner">
+    <span>We use cookies to improve your experience. See our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.</span>
+    <button onclick="acceptCookies()">Got it!</button>
   </div>
 
   <script>
@@ -314,15 +307,13 @@
     }
 
     function acceptCookies() {
+      localStorage.setItem("cookiesAccepted", "true");
       document.getElementById('cookieBanner').style.display = 'none';
-      localStorage.setItem('cookiesAccepted', 'true');
     }
 
-    window.addEventListener('load', () => {
-      if (localStorage.getItem('cookiesAccepted')) {
-        document.getElementById('cookieBanner').style.display = 'none';
-      }
-    });
+    if (localStorage.getItem("cookiesAccepted")) {
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
   </script>
 </body>
 </html>
