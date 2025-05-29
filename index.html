@@ -315,5 +315,46 @@
       document.getElementById('cookieBanner').style.display = 'none';
     }
   </script>
+<!-- Firebase Admin Login -->
+<script type="module">
+  // Firebase Setup
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAk57NSoZNbGV7h5Br1-F97VU2qdCwSVb8",
+    authDomain: "tc-weed-abatement.firebaseapp.com",
+    projectId: "tc-weed-abatement",
+    storageBucket: "tc-weed-abatement.appspot.com",
+    messagingSenderId: "740378265768",
+    appId: "1:740378265768:web:97ddf3a159e1268bf71a9d"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // Admin login logic
+  function showAdminLogin() {
+    const password = prompt("Enter admin password:");
+    if (password && password.toLowerCase() === "caprocz") {
+      document.getElementById("adminPanel").style.display = "block";
+    } else {
+      alert("Incorrect password.");
+    }
+  }
+
+  window.showAdminLogin = showAdminLogin;
+</script>
+
+<!-- Admin Login Button -->
+<button onclick="showAdminLogin()" style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9em;">
+  Admin Login
+</button>
+
+<!-- Admin Panel (hidden until login) -->
+<div id="adminPanel" style="display: none; padding: 2rem; margin-top: 2rem; background: rgba(255,255,255,0.1); color: white;">
+  <h2>Admin Panel</h2>
+  <p>You are now logged in. Content editing features will go here.</p>
+</div>
 </body>
 </html>
