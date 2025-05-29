@@ -3,77 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TC Weed</title>
+  <title>TC Weed Abatement</title>
   <style>
-    /* Your existing styles here, unchanged for brevity */
-    /* Paste all the CSS from your original code here */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: black;
+      color: white;
+      text-align: center;
+    }
+    header {
+      background: green;
+      padding: 1rem;
+    }
+    main {
+      padding: 2rem;
+    }
+    footer {
+      background: #222;
+      padding: 1rem;
+    }
+    .admin-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: white;
+      color: black;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .editable {
+      border: 1px dashed white;
+    }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <header>
-      <div class="top-right">
-        <button class="quote-btn" onclick="document.getElementById('formPopup').style.display='flex'">Get a Quote</button>
-        <span class="review-link" onclick="document.getElementById('reviewPopup').style.display='flex'">Leave a Review</span>
-      </div>
-      <h1>TC Weed Abatement</h1>
-      <p>Revitalizing Lawns One Day at a Time</p>
-    </header>
 
-    <section>
-      <h2>About Us</h2>
-      <p id="aboutText">We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's weeds, trash, or leaf removal, we deliver with precision and passion.</p>
-    </section>
+  <header>
+    <h1>TC Weed Abatement</h1>
+  </header>
 
-    <section>
-      <h2>Our Services</h2>
-      <p id="servicesText">We offer a range of services including trash cleanup, weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
-    </section>
+  <main>
+    <p id="aboutText">We are a professional weed abatement company serving the greater Los Angeles area with top-quality service and fast turnaround times.</p>
+    <p id="servicesText">Our services include lot clearing, fire prevention, brush removal, and general landscaping maintenance to help keep your property safe and clean.</p>
+    <p id="contactText">Email: Trevorcaezza@icloud.com<br>Phone: (661) 289-6054</p>
+  </main>
 
-    <section>
-      <h2>Contact</h2>
-      <p id="contactText">Email: Trevorcaezza@icloud.com<br/>Phone: (661) 289-6054</p>
-    </section>
+  <footer>
+    <p>&copy; 2025 TC Weed Abatement. All rights reserved.</p>
+  </footer>
 
-    <footer>
-      TM; 2025 TC Weed Abatement. Not all rights reserved.
-    </footer>
-  </div>
+  <!-- Admin Panel Button -->
+  <button id="adminPanel" class="admin-btn" onclick="logoutAdmin()" style="display: none;">Logout</button>
+  <button id="adminLoginBtn" class="admin-btn" onclick="showAdminLogin()">Admin</button>
 
-  <!-- Quote Form -->
-  <div class="form-popup" id="formPopup">
-    <!-- ... form unchanged ... -->
-  </div>
-
-  <!-- Review Form -->
-  <div class="form-popup" id="reviewPopup">
-    <!-- ... form unchanged ... -->
-  </div>
-
-  <!-- Success Messages & Cookie Banner -->
-  <div id="successMessage">✅ Thanks! We'll reach out with your quote as soon as possible.</div>
-  <div id="reviewSuccessMessage">✅ Thanks for your review! We appreciate your feedback.</div>
-  <div class="cookie-banner" id="cookieBanner">
-    <span>We use cookies to improve your experience. See our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.</span>
-    <button onclick="acceptCookies()">Got it!</button>
-  </div>
-
-  <!-- Admin Login Button -->
-  <button onclick="showAdminLogin()" style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9em;">
-    Admin Login
-  </button>
-
-  <!-- Admin Panel (shown on login) -->
-  <div id="adminPanel" style="display: none; padding: 2rem; margin-top: 2rem; background: rgba(255,255,255,0.1); color: white;">
-    <h2>Admin Panel</h2>
-    <p>You are now logged in. Click the text below to edit:</p>
-    <button onclick="logoutAdmin()" style="margin-top: 1rem;">Logout</button>
-  </div>
-
-  <!-- Firebase Admin Script -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+    import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyAk57NSoZNbGV7h5Br1-F97VU2qdCwSVb8",
@@ -87,93 +75,53 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    const contentRefs = {
-      aboutText: ref(db, 'content/about'),
-      servicesText: ref(db, 'content/services'),
-      contactText: ref(db, 'content/contact')
-    };
-
-    // Load saved content
-    Object.entries(contentRefs).forEach(([id, dbRef]) => {
-      onValue(dbRef, snapshot => {
-        const val = snapshot.val();
-        if (val && document.getElementById(id)) {
-          document.getElementById(id).innerHTML = val;
+    // Load saved content on page load
+    document.querySelectorAll("p[id]").forEach(p => {
+      const contentRef = ref(db, 'content/' + p.id);
+      onValue(contentRef, snapshot => {
+        if (snapshot.exists()) {
+          p.innerHTML = snapshot.val();
         }
       });
     });
 
-    // Admin login function
+    // Admin Login
     window.showAdminLogin = function () {
       const password = prompt("Enter admin password:");
       if (password && password.toLowerCase() === "caprocz") {
         document.getElementById("adminPanel").style.display = "block";
+        document.getElementById("adminLoginBtn").style.display = "none";
         enableEditing();
       } else {
         alert("Incorrect password.");
       }
     };
 
+    // Admin Logout
     window.logoutAdmin = function () {
       document.getElementById("adminPanel").style.display = "none";
+      document.getElementById("adminLoginBtn").style.display = "block";
       disableEditing();
     };
 
+    // Enable editable paragraphs
     function enableEditing() {
-      Object.keys(contentRefs).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.contentEditable = true;
-          el.style.border = "1px dashed white";
-          el.addEventListener("blur", () => {
-            set(contentRefs[id], el.innerHTML.trim());
-          });
-        }
+      document.querySelectorAll("p[id]").forEach(p => {
+        p.contentEditable = true;
+        p.classList.add("editable");
+        p.addEventListener("blur", () => {
+          const contentRef = ref(db, 'content/' + p.id);
+          set(contentRef, p.innerHTML.trim());
+        });
       });
     }
 
+    // Disable editable paragraphs
     function disableEditing() {
-      Object.keys(contentRefs).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.contentEditable = false;
-          el.style.border = "none";
-        }
+      document.querySelectorAll("p[id]").forEach(p => {
+        p.contentEditable = false;
+        p.classList.remove("editable");
       });
-    }
-  </script>
-
-  <!-- Your original success message and cookie logic -->
-  <script>
-    if (window.location.search.includes('success=1')) {
-      const msg = document.getElementById('successMessage');
-      msg.style.display = 'block';
-      setTimeout(() => {
-        msg.style.display = 'none';
-        const url = new URL(window.location);
-        url.search = '';
-        window.history.replaceState({}, document.title, url);
-      }, 6000);
-    }
-
-    if (window.location.search.includes('review=1')) {
-      const msg = document.getElementById('reviewSuccessMessage');
-      msg.style.display = 'block';
-      setTimeout(() => {
-        msg.style.display = 'none';
-        const url = new URL(window.location);
-        url.search = '';
-        window.history.replaceState({}, document.title, url);
-      }, 6000);
-    }
-
-    function acceptCookies() {
-      localStorage.setItem("cookiesAccepted", "true");
-      document.getElementById('cookieBanner').style.display = 'none';
-    }
-
-    if (localStorage.getItem("cookiesAccepted")) {
-      document.getElementById('cookieBanner').style.display = 'none';
     }
   </script>
 </body>
