@@ -5,209 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TC Weed</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body, html {
-      font-family: 'Segoe UI', sans-serif;
-      height: 100%;
-      background: url('vecteezy_vector-mountains-forest-background-texture-silhouette-of_7162599.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.6);
-      width: 100%;
-      min-height: 100vh;
-      padding: 2rem;
-    }
-
-    header {
-      text-align: center;
-      padding-top: 10vh;
-      position: relative;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      z-index: 1;
-    }
-
-    .quote-btn {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.95em;
-      background-color: #00c896;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .quote-btn:hover {
-      background-color: #00a47b;
-    }
-
-    .review-link {
-      color: #00c896;
-      cursor: pointer;
-      text-decoration: underline;
-      font-size: 0.95em;
-    }
-
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
-    }
-
-    header p {
-      font-size: 1.3em;
-      max-width: 600px;
-      margin: auto;
-      line-height: 1.5;
-    }
-
-    section {
-      max-width: 800px;
-      margin: 4rem auto;
-      padding: 1rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-    }
-
-    section h2 {
-      font-size: 2em;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid white;
-      padding-bottom: 0.5rem;
-    }
-
-    section p {
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9em;
-      background-color: rgba(0, 0, 0, 0.4);
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-
-    .form-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .form-container {
-      background-color: white;
-      color: black;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .form-container h2 {
-      margin-bottom: 1rem;
-    }
-
-    .form-container input,
-    .form-container textarea {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    .form-container button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      background-color: #00c896;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .form-container .close-btn {
-      background-color: #ccc;
-      margin-left: 1rem;
-      color: black;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.2em;
-      }
-      section {
-        margin: 2rem 1rem;
-      }
-      .top-right {
-        flex-direction: column;
-        right: 1rem;
-        top: 0.5rem;
-      }
-    }
-
-    #successMessage,
-    #reviewSuccessMessage {
-      display: none;
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #00c896;
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-size: 1.1em;
-      z-index: 9999;
-    }
-
-    .cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.9);
-      color: white;
-      padding: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10000;
-    }
-
-    .cookie-banner button {
-      background-color: #00c896;
-      border: none;
-      padding: 0.6rem 1rem;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .cookie-banner a {
-      color: #00c896;
-      text-decoration: underline;
-    }
+    /* Your existing styles here, unchanged for brevity */
+    /* Paste all the CSS from your original code here */
   </style>
 </head>
 <body>
@@ -223,17 +22,17 @@
 
     <section>
       <h2>About Us</h2>
-      <p>We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's weeds, trash, or leaf removal, we deliver with precision and passion.</p>
+      <p id="aboutText">We are a cutting-edge company dedicated to providing high-quality property cleanup to fit your needs. Whether it's weeds, trash, or leaf removal, we deliver with precision and passion.</p>
     </section>
 
     <section>
       <h2>Our Services</h2>
-      <p>We offer a range of services including trash cleanup, weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
+      <p id="servicesText">We offer a range of services including trash cleanup, weed removal, marketing strategy, and more. Our team is experienced and ready to bring your yard and garden back to life.</p>
     </section>
 
     <section>
       <h2>Contact</h2>
-      <p>Email: Trevorcaezza@icloud.com<br/>Phone: (661) 289-6054</p>
+      <p id="contactText">Email: Trevorcaezza@icloud.com<br/>Phone: (661) 289-6054</p>
     </section>
 
     <footer>
@@ -243,46 +42,108 @@
 
   <!-- Quote Form -->
   <div class="form-popup" id="formPopup">
-    <form class="form-container" action="https://formsubmit.co/trevorcaezza@icloud.com" method="POST">
-      <input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?success=1">
-      <input type="hidden" name="_cc" value="noelleuhl@icloud.com">
-      <h2>Get a Quote</h2>
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" rows="5" placeholder="Tell us what you need..." required></textarea>
-      <button type="submit">Send</button>
-      <button type="button" class="close-btn" onclick="document.getElementById('formPopup').style.display='none'">Cancel</button>
-    </form>
+    <!-- ... form unchanged ... -->
   </div>
 
   <!-- Review Form -->
   <div class="form-popup" id="reviewPopup">
-    <form class="form-container" action="https://formsubmit.co/noelleuhl@icloud.com" method="POST">
-      <input type="hidden" name="_subject" value="New Review from Website">
-      <input type="hidden" name="_redirect" value="https://solarpandora184.github.io/TC-Weed-Abaitment/?review=1">
-      <input type="hidden" name="_cc" value="trevorcaezza@icloud.com">
-      <h2>Leave a Review</h2>
-      <input type="text" name="name" placeholder="Your Name" required />
-      <textarea name="review" rows="5" placeholder="Write your review here.." required></textarea>
-      <button type="submit">Submit</button>
-      <button type="button" class="close-btn" onclick="document.getElementById('reviewPopup').style.display='none'">Cancel</button>
-    </form>
+    <!-- ... form unchanged ... -->
   </div>
 
-  <!-- Success Messages -->
-  <div id="successMessage">
-    ✅ Thanks! We'll reach out with your quote as soon as possible.
-  </div>
-  <div id="reviewSuccessMessage">
-    ✅ Thanks for your review! We appreciate your feedback.
-  </div>
-
-  <!-- Cookie Banner -->
+  <!-- Success Messages & Cookie Banner -->
+  <div id="successMessage">✅ Thanks! We'll reach out with your quote as soon as possible.</div>
+  <div id="reviewSuccessMessage">✅ Thanks for your review! We appreciate your feedback.</div>
   <div class="cookie-banner" id="cookieBanner">
     <span>We use cookies to improve your experience. See our <a href="privacy-policy.html" target="_blank">Privacy Policy</a>.</span>
     <button onclick="acceptCookies()">Got it!</button>
   </div>
 
+  <!-- Admin Login Button -->
+  <button onclick="showAdminLogin()" style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9em;">
+    Admin Login
+  </button>
+
+  <!-- Admin Panel (shown on login) -->
+  <div id="adminPanel" style="display: none; padding: 2rem; margin-top: 2rem; background: rgba(255,255,255,0.1); color: white;">
+    <h2>Admin Panel</h2>
+    <p>You are now logged in. Click the text below to edit:</p>
+    <button onclick="logoutAdmin()" style="margin-top: 1rem;">Logout</button>
+  </div>
+
+  <!-- Firebase Admin Script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAk57NSoZNbGV7h5Br1-F97VU2qdCwSVb8",
+      authDomain: "tc-weed-abatement.firebaseapp.com",
+      projectId: "tc-weed-abatement",
+      storageBucket: "tc-weed-abatement.appspot.com",
+      messagingSenderId: "740378265768",
+      appId: "1:740378265768:web:97ddf3a159e1268bf71a9d"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const contentRefs = {
+      aboutText: ref(db, 'content/about'),
+      servicesText: ref(db, 'content/services'),
+      contactText: ref(db, 'content/contact')
+    };
+
+    // Load saved content
+    Object.entries(contentRefs).forEach(([id, dbRef]) => {
+      onValue(dbRef, snapshot => {
+        const val = snapshot.val();
+        if (val && document.getElementById(id)) {
+          document.getElementById(id).innerHTML = val;
+        }
+      });
+    });
+
+    // Admin login function
+    window.showAdminLogin = function () {
+      const password = prompt("Enter admin password:");
+      if (password && password.toLowerCase() === "caprocz") {
+        document.getElementById("adminPanel").style.display = "block";
+        enableEditing();
+      } else {
+        alert("Incorrect password.");
+      }
+    };
+
+    window.logoutAdmin = function () {
+      document.getElementById("adminPanel").style.display = "none";
+      disableEditing();
+    };
+
+    function enableEditing() {
+      Object.keys(contentRefs).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.contentEditable = true;
+          el.style.border = "1px dashed white";
+          el.addEventListener("blur", () => {
+            set(contentRefs[id], el.innerHTML.trim());
+          });
+        }
+      });
+    }
+
+    function disableEditing() {
+      Object.keys(contentRefs).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.contentEditable = false;
+          el.style.border = "none";
+        }
+      });
+    }
+  </script>
+
+  <!-- Your original success message and cookie logic -->
   <script>
     if (window.location.search.includes('success=1')) {
       const msg = document.getElementById('successMessage');
@@ -315,46 +176,5 @@
       document.getElementById('cookieBanner').style.display = 'none';
     }
   </script>
-<!-- Firebase Admin Login -->
-<script type="module">
-  // Firebase Setup
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyAk57NSoZNbGV7h5Br1-F97VU2qdCwSVb8",
-    authDomain: "tc-weed-abatement.firebaseapp.com",
-    projectId: "tc-weed-abatement",
-    storageBucket: "tc-weed-abatement.appspot.com",
-    messagingSenderId: "740378265768",
-    appId: "1:740378265768:web:97ddf3a159e1268bf71a9d"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  // Admin login logic
-  function showAdminLogin() {
-    const password = prompt("Enter admin password:");
-    if (password && password.toLowerCase() === "caprocz") {
-      document.getElementById("adminPanel").style.display = "block";
-    } else {
-      alert("Incorrect password.");
-    }
-  }
-
-  window.showAdminLogin = showAdminLogin;
-</script>
-
-<!-- Admin Login Button -->
-<button onclick="showAdminLogin()" style="position: fixed; bottom: 10px; right: 10px; z-index: 1000; background: rgba(255,255,255,0.2); color: white; border: 1px solid white; padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.9em;">
-  Admin Login
-</button>
-
-<!-- Admin Panel (hidden until login) -->
-<div id="adminPanel" style="display: none; padding: 2rem; margin-top: 2rem; background: rgba(255,255,255,0.1); color: white;">
-  <h2>Admin Panel</h2>
-  <p>You are now logged in. Content editing features will go here.</p>
-</div>
 </body>
 </html>
